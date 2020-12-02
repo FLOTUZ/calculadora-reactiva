@@ -1,6 +1,4 @@
-*{
-  border: solid 1px greenyellow;
-}
+@import url('https://fonts.googleapis.com/css2?family=Nerko+One&display=swap');
 
 .App {
   text-align: center;
@@ -9,6 +7,7 @@
 .table{
   display: table;
   margin: auto;
+  border-radius: 35px;
 }
 
 .row{
@@ -21,15 +20,40 @@
   width: 50px;
 }
 
+h1{
+  font-size:70px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-family: 'Nerko One', cursive;
+}
+
 button{
+  color: dimgrey;
+  border: 0px;
+  margin: 1px;
+  border-radius: 37px;
   font-size:28px;
   height: 82px;
   width: 70px;
 }
 
 textarea{
+  border: 0px;
+  font-size: 20px;
+  color: darkslategrey;
   margin: auto;
   width: 284px;
   height: 60px;
   resize: none;
+  border-radius: 16px;
+  background: azure;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+#heart {
+  height: 20px;
+}
+#footer{
+  font-family: 'Nerko One', cursive;
+  margin-top: 20px;
 }

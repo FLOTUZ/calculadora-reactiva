@@ -1,9 +1,12 @@
+import './Reset.css';
 import './App.css';
+import heart from './heart.webp';
 
 export default function App() {
   return (
     <div className="App">
 
+      <h1>Calculadora Reactiva ⚛️ </h1>
 
       <textarea readOnly id="resultado"></textarea>
 
@@ -11,10 +14,10 @@ export default function App() {
       <div className="table">
 
         <div className="row">
-          {btn("C")}
+          {btn("C", 'orangered')}
           {btn("/")}
           {btn("X")}
-          {btn("DEL")}
+          {btn("DEL", 'lightsteelblue')}
         </div>
 
         <div className="row">
@@ -38,18 +41,27 @@ export default function App() {
           {btn("=")}
         </div>
         <div className="row">
+          <div className="cell"></div>
           {btn(0)}
+          {btn('.')}
         </div>
 
       </div>
+      <p id='footer'>
+        Made with <img id='heart' src={heart} alt="Logo" /> by Emmanuel Esquivel Pardo
+      </p>
     </div>
   );
 }
 
-function btn(caracter) {
+function btn(caracter, backround) {
+
   return (
     <div className="cell">
-      <button onClick={() => { dameLetra(caracter) }}> {caracter}</button>
+      <button style={{ background: backround }}
+        onClick={() => { dameLetra(caracter) }}>
+        {caracter}
+      </button>
     </div>
   );
 }
@@ -58,6 +70,7 @@ function calcular(a, operador, b) {
   switch (operador) {
     case '+':
       c = a + b;
+      c = c.toFixed(4);
       document.getElementById('resultado').innerHTML = c;
       a = 0;
       b = 0;
@@ -67,6 +80,7 @@ function calcular(a, operador, b) {
 
     case '-':
       c = a - b;
+      c = c.toFixed(4);
       document.getElementById('resultado').innerHTML = c;
       a = 0;
       b = 0;
@@ -76,6 +90,7 @@ function calcular(a, operador, b) {
 
     case 'X':
       c = a * b;
+      c = c.toFixed(4);
       document.getElementById('resultado').innerHTML = c;
       a = 0;
       b = 0;
@@ -85,6 +100,7 @@ function calcular(a, operador, b) {
 
     case '/':
       c = a / b;
+      c = c.toFixed(4);
       document.getElementById('resultado').innerHTML = c;
       a = 0;
       b = 0;
@@ -144,7 +160,6 @@ function dameLetra(valor) {
       break;
     default:
       document.getElementById('resultado').innerHTML += valor;
-      console.log(valor);
       break;
   }
 }
