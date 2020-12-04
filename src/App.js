@@ -71,7 +71,7 @@ function calcular(a, operador, b) {
     case '+':
       c = a + b;
       c = c.toFixed(4);
-      document.getElementById('resultado').innerHTML = c;
+      pintaEnPantalla(c);
       a = 0;
       b = 0;
       c = 0;
@@ -81,7 +81,7 @@ function calcular(a, operador, b) {
     case '-':
       c = a - b;
       c = c.toFixed(4);
-      document.getElementById('resultado').innerHTML = c;
+      pintaEnPantalla(c);
       a = 0;
       b = 0;
       c = 0
@@ -91,7 +91,7 @@ function calcular(a, operador, b) {
     case 'X':
       c = a * b;
       c = c.toFixed(4);
-      document.getElementById('resultado').innerHTML = c;
+      pintaEnPantalla(c);
       a = 0;
       b = 0;
       c = 0
@@ -101,7 +101,7 @@ function calcular(a, operador, b) {
     case '/':
       c = a / b;
       c = c.toFixed(4);
-      document.getElementById('resultado').innerHTML = c;
+      pintaEnPantalla(c);
       a = 0;
       b = 0;
       c = 0
@@ -121,45 +121,58 @@ let c = 0;
 function dameLetra(valor) {
 
   switch (valor) {
+    case 'DEL':
+      //Borrar de adelante hacia atrás uno a uno
+      let ultimo = document.getElementById('resultado').innerHTML;
+      ultimo = ultimo.substr(0, ultimo.length - 1);
+      pintaEnPantalla(ultimo);
+      break;
     case 'C':
-      document.getElementById('resultado').innerHTML = '';
+      limpiar();
       a = 0;
       b = 0;
       operador = '';
       break;
     case '/':
       operador = '/';
-      a = parseFloat(document.getElementById('resultado').innerHTML);
-      document.getElementById('resultado').innerHTML = '';
+      a = contenidoPantalla();
+      limpiar();
       break;
     case 'X':
       operador = 'X';
-      a = parseFloat(document.getElementById('resultado').innerHTML);
-      document.getElementById('resultado').innerHTML = '';
-      break;
-    case 'DEL':
-      //Borrar de adelante hacia atrás uno a uno
-      let ultimo = document.getElementById('resultado').innerHTML;
-      ultimo = ultimo.substr(0, ultimo.length - 1);
-      document.getElementById('resultado').innerHTML = ultimo;
+      a = contenidoPantalla();
+      limpiar();
       break;
     case '-':
       operador = '-';
-      a = parseFloat(document.getElementById('resultado').innerHTML);
-      document.getElementById('resultado').innerHTML = '';
+      a = contenidoPantalla();
+      limpiar();
       break;
     case '+':
       operador = '+';
-      a = parseFloat(document.getElementById('resultado').innerHTML);
-      document.getElementById('resultado').innerHTML = '';
+      a = contenidoPantalla();
+      limpiar();
       break;
     case '=':
-      b = parseFloat(document.getElementById('resultado').innerHTML);
-      document.getElementById('resultado').innerHTML = '';
+      b = contenidoPantalla();
+      limpiar();
       calcular(a, operador, b);
       break;
     default:
       document.getElementById('resultado').innerHTML += valor;
       break;
   }
+}
+//Limpia pantalla de resultado
+function limpiar() {
+  document.getElementById('resultado').innerHTML = '';
+}
+
+function contenidoPantalla() {
+  let pantalla = parseFloat(document.getElementById('resultado').innerHTML);
+  return pantalla;
+}
+
+function pintaEnPantalla(algo) {
+  document.getElementById('resultado').innerHTML = algo;
 }
